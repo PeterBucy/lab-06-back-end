@@ -12,38 +12,46 @@ const PORT = process.env.PORT || 3000; //takes from a .env file and then the ter
 const app = express();
 app.use(cors());
 
-// Get Location data
-app.get('/location', (request, response) => {
-  const locationData = searchToLatLong(request.query.data); // 'Lynnwood, WA'
-  response.send(locationData);
-})
-
-// app.get('/weather', (request, response) => {
-//   const weatherData = 
-// })
-
-function searchToLatLong(query){
-  const geoData = require('./data/geo.json');
-  //if statement
-  if (query === geoData.results[0].address_components[0].long_name) {
-    const location = new Location(geoData.results[0]);
-    return location;
-  } else {
-    app.get('/*', function (req, res) {
-      res.status(500).send('Sorry! Something went horribly wrong!');
-    })
-  }
-}
-
+// Constructor Functions
 function Location(location){
   this.formatted_query = location.formatted_address;
   this.latitude = location.geometry.location.lat;
   this.longitude = location.geometry.location.lng;  
 }
 
-// function Weather(weather) {
-//   this.forcast = weather.dark
-// }
+function Weather(weather) {
+  this.forcast = weather.summary;
+  this.time = weather.time;
+}
+
+// Router
+app.get('/location', getLocation)
+
+app.get('/weather', getWeather)
+
+//Handlers
+function getWeather (request, response) {
+  const weatherData = searchForWeather(request.query)
+  response.send(weatherData);
+}
+
+function getLocation (req, res) {
+  const locationData = searchToLatLong(req.query.data); // 'Lynnwood, WA'
+  res.send(locationData);
+}
+
+function searchForWeather (query) {
+  let weatherData = require('./data/darksky.json');
+  let dailyArray = [];
+  weatherData.daily.data.forEach(forecast => dailyArray.push(new Weather(forecast)));
+  return dailyArray;
+}
+
+function searchToLatLong(query){
+  const geoData = require('./data/geo.json');
+  const location = new Location(geoData.results[0]);
+  return location;
+}
 
 // Give error messages if incorrect
 
