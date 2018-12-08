@@ -18,10 +18,14 @@ app.get('/location', (request, response) => {
   response.send(locationData);
 })
 
+// app.get('/weather', (request, response) => {
+//   const weatherData = 
+// })
+
 function searchToLatLong(query){
   const geoData = require('./data/geo.json');
   //if statement
-  if (query.toLowerCase() === geoData.results[0].address_components[0].long_name.toLowerCase()) {
+  if (query === geoData.results[0].address_components[0].long_name) {
     const location = new Location(geoData.results[0]);
     return location;
   } else {
@@ -37,8 +41,11 @@ function Location(location){
   this.longitude = location.geometry.location.lng;  
 }
 
+// function Weather(weather) {
+//   this.forcast = weather.dark
+// }
+
 // Give error messages if incorrect
-// you should have this in the finished app but you dont need it yet
 
 app.get('/*', function(req, res) {
   res.status(404).send('Success!');
