@@ -1,35 +1,38 @@
 'use strict';
 
-
-
 //Application Dependencies
 const express = require('express');
 const cors = require('cors');
 
 //Load env vars;
-
 require('dotenv').config();
-
 const PORT = process.env.PORT || 3000; //takes from a .env file and then the terminal env
 
 //app
-
 const app = express();
 app.use(cors());
 
 // Get Location data
-
 app.get('/location', (request, response) => {
-  const locationData = searchToLatLong(request.query.data || 'Lynnwood, WA'); // 'Lynnwood, WA'
-
+  const locationData = searchToLatLong(request.query.data); // 'Lynnwood, WA'
   response.send(locationData);
 })
 
+// app.get('/weather', (request, response) => {
+//   const weatherData = 
+// })
+
 function searchToLatLong(query){
   const geoData = require('./data/geo.json');
-  const location = new Location(geoData.results[0]);
-
-  return location;
+  //if statement
+  if (query === geoData.results[0].address_components[0].long_name) {
+    const location = new Location(geoData.results[0]);
+    return location;
+  } else {
+    app.get('/*', function (req, res) {
+      res.status(500).send('Sorry! Something went horribly wrong!');
+    })
+  }
 }
 
 function Location(location){
@@ -38,20 +41,20 @@ function Location(location){
   this.longitude = location.geometry.location.lng;  
 }
 
+// function Weather(weather) {
+//   this.forcast = weather.dark
+// }
 
 // Give error messages if incorrect
 
-// you should have this in the finished app but you dont need it yet
+app.get('/*', function(req, res) {
+  res.status(404).send('Success!');
+})
 
-
-
-// app.get('/*', function(req, res) {
-
-//   res.status(404).send('you are in the wrong place');
-
+// app.get('/*', function (req, res) {
+//   res.status(500).send('Sorry! Something went horribly wrong!');
 // })
 
 app.listen(PORT, () => {
   console.log(`app is up on port : ${PORT}`)
 })
-
