@@ -1,7 +1,7 @@
 {
-  "name": "city-explorer",
+  "name": "lab-06-back-end",
   "version": "1.0.0",
-  "description": "api for gathering city data",
+  "description": "## Time Estimates",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/PeterBucy/lab-06-back-end.git"
   },
-  "author": "Peter",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/PeterBucy/lab-06-back-end/issues"
   },
@@ -21,6 +21,5 @@
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4"
-  },
-  "devDependencies": {}
+  }
 }

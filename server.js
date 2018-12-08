@@ -15,12 +15,29 @@ app.use(cors());
 // Get Location data
 app.get('/location', (request, response) => {
   const locationData = searchToLatLong(request.query.data); // 'Lynnwood, WA'
+  console.log(locationData);
   response.send(locationData);
+// response.send({
+//   "search_query": "seattle",
+//   "formatted_query": "Seattle, WA, USA",
+//   "latitude": "47.606210",
+//   "longitude": "-122.332071"
+// })
 })
 
-// app.get('/weather', (request, response) => {
-//   const weatherData = 
-// })
+app.get('/weather', (request, response) => {
+ response.send([
+  {
+    "forecast": "Partly cloudy until afternoon.",
+    "time": "Mon Jan 01 2001"
+  },
+  {
+    "forecast": "Mostly cloudy in the morning.",
+    "time": "Tue Jan 02 2001"
+  },
+  
+])
+})
 
 function searchToLatLong(query){
   const geoData = require('./data/geo.json');
