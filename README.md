@@ -1,9 +1,24 @@
 # lab-06-back-end
 
 ## Time Estimates
+Task 1: Obtaining Longitude and Latitude
 
-* Task 1: Additiional Functionality
-  * Estimated Time of Completion: __60 hours__
-  * Start Time: __18:30__
-  * End Time: __20:30__
-  * Actual Time of Completion: __2 hours__
+Estimated Time of Completion: 60 hours
+Start Time: 18:30
+End Time: 20:30
+Actual Time of Completion: 2 hours
+Task 2: Retrieving Weather Information
+
+Task 2: Retrieving Weather Information
+
+
+
+Estimated Time of Completion: 60 hours
+Start Time: 18:30
+End Time: 20:30
+Actual Time of Completion: 2 hours
+Task 3: Additiional Functionality
+
+Task 3: Additiional Functionality
+
+Not Required
